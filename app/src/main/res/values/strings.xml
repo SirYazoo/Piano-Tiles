@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PianoTiles</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_stop">Stop</string>
 </resources>
