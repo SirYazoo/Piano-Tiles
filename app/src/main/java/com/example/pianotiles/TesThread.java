@@ -1,8 +1,11 @@
 package com.example.pianotiles;
 
+import java.util.Random;
+
 public class TesThread implements Runnable {
     protected Thread thread;
     protected UIThreadedWrapper uiThreadedWrapper;
+    private Random random;
     private int newX;
     private int newY;
     protected int maxWidth;
@@ -12,6 +15,7 @@ public class TesThread implements Runnable {
     public TesThread(UIThreadedWrapper uiThreadedWrapper, int maxWidth, int maxHeight) {
         this.uiThreadedWrapper = uiThreadedWrapper;
         this.thread = new Thread(this);
+        this.random = new Random();
         this.maxWidth = maxWidth;
         this.maxHeight = maxHeight;
     }
@@ -22,8 +26,8 @@ public class TesThread implements Runnable {
 
     @Override
     public void run() {
-        this.newX = 0;
-        this.newY = 0;
+        this.newX = this.random.nextInt(20) - 10;
+        this.newY = this.random.nextInt(20) - 10;
         int x = this.maxWidth / 2;
         int y = this.maxHeight / 2;
         this.tile = new Tile(x, y);

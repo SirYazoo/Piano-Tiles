@@ -6,6 +6,7 @@ import androidx.core.content.res.ResourcesCompat;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.maxHeight = this.ivCanvas.getHeight();
         this.x = this.maxWidth / 2;
         this.y = this.maxHeight / 2;
+        int left = this.x - 50;
+        int top = this.y - 50;
+        int right = this.x + 50;
+        int bottom = this.y + 50;
         this.mBitmap = Bitmap.createBitmap(this.maxWidth, this.maxHeight, Bitmap.Config.ARGB_8888);
         this.ivCanvas.setImageBitmap(this.mBitmap);
         this.mCanvas = new Canvas(this.mBitmap);
@@ -49,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Paint paint = new Paint();
         int mColorTest = ResourcesCompat.getColor(getResources(), R.color.teal_200, null);
         paint.setColor(mColorTest);
-        this.mCanvas.drawCircle(this.x, this.y, 50, paint);
+        Rect rect = new Rect(left, top, right, bottom);
+        this.mCanvas.drawRect(rect, paint);
         this.ivCanvas.invalidate();
     }
 
@@ -63,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Paint paint = new Paint();
         int mColorTest = ResourcesCompat.getColor(getResources(), R.color.teal_200, null);
         paint.setColor(mColorTest);
-        this.mCanvas.drawCircle(tile.getX(), tile.getY(), 50, paint);
+        Rect rect = new Rect(tile.getX() - 50, tile.getY() - 50, tile.getX() + 50, tile.getY() + 50);
+        this.mCanvas.drawRect(rect, paint);
         this.ivCanvas.invalidate();
     }
 
