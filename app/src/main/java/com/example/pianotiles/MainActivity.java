@@ -13,16 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Bitmap mBitmap;
     private ImageView ivCanvas;
     private Canvas mCanvas;
     private Button startBtn;
     private Button stopBtn;
     private int maxWidth;
     private int maxHeight;
-    private int x;
-    private int y;
-    private Tile tile;
     protected UIThreadedWrapper uiThreadedWrapper;
 
     @Override
@@ -40,21 +36,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void initCanvas() {
         this.maxWidth = this.ivCanvas.getWidth();
         this.maxHeight = this.ivCanvas.getHeight();
-        this.x = this.maxWidth / 2;
-        this.y = 0;
-        int left = this.x - 100;
-        int top = this.y;
-        int right = this.x + 100;
-        int bottom = this.y + 400;
-        this.mBitmap = Bitmap.createBitmap(this.maxWidth, this.maxHeight, Bitmap.Config.ARGB_8888);
-        this.ivCanvas.setImageBitmap(this.mBitmap);
-        this.mCanvas = new Canvas(this.mBitmap);
+        int x = this.maxWidth / 2;
+        int y = 0;
+        int left1 = x - 100;
+        int top1 = y;
+        int right1 = x + 100;
+        int bottom1 = y + 400;
+        Bitmap mBitmap = Bitmap.createBitmap(this.maxWidth, this.maxHeight, Bitmap.Config.ARGB_8888);
+        this.ivCanvas.setImageBitmap(mBitmap);
+        this.mCanvas = new Canvas(mBitmap);
         int mColorBackground = ResourcesCompat.getColor(getResources(), R.color.white, null);
         this.mCanvas.drawColor(mColorBackground);
         Paint paint = new Paint();
         int mColorTest = ResourcesCompat.getColor(getResources(), R.color.teal_200, null);
         paint.setColor(mColorTest);
-        Rect rect = new Rect(left, top, right, bottom);
+        Rect rect = new Rect(left1, top1, right1, bottom1);
         this.mCanvas.drawRect(rect, paint);
         this.ivCanvas.invalidate();
     }
@@ -75,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     protected void run() {
-        TesThread objTest = new TesThread(this.uiThreadedWrapper, this.maxWidth, this.maxHeight);
-        objTest.drawTile();
+        Thread1 thread1 = new Thread1(this.uiThreadedWrapper, this.maxWidth, this.maxHeight);
+        thread1.drawTile();
     }
 
     @Override

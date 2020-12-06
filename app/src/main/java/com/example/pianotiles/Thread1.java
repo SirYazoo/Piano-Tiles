@@ -1,21 +1,14 @@
 package com.example.pianotiles;
 
-import java.util.Random;
-
-public class TesThread implements Runnable {
+public class Thread1 implements Runnable {
     protected Thread thread;
     protected UIThreadedWrapper uiThreadedWrapper;
-    private Random random;
-    private int newX;
-    private int newY;
     protected int maxWidth;
     protected int maxHeight;
-    private Tile tile;
 
-    public TesThread(UIThreadedWrapper uiThreadedWrapper, int maxWidth, int maxHeight) {
+    public Thread1(UIThreadedWrapper uiThreadedWrapper, int maxWidth, int maxHeight) {
         this.uiThreadedWrapper = uiThreadedWrapper;
         this.thread = new Thread(this);
-        this.random = new Random();
         this.maxWidth = maxWidth;
         this.maxHeight = maxHeight;
     }
@@ -26,15 +19,15 @@ public class TesThread implements Runnable {
 
     @Override
     public void run() {
-        this.newX = 0;
-        this.newY = 0;
+        int newX = 0;
+        int newY = 0;
         int x = this.maxWidth / 2;
         int y = 0;
-        this.tile = new Tile(x, y);
-        while (this.tile.getX() - 50 <= this.maxWidth &&
-                this.tile.getY() - 50 <= this.maxHeight &&
-                this.tile.getX() + 50 >= 0 &&
-                this.tile.getY() + 50 >= 0) {
+        Tile tile = new Tile(x, y);
+        while (tile.getX() - 50 <= this.maxWidth &&
+                tile.getY() - 50 <= this.maxHeight &&
+                tile.getX() + 50 >= 0 &&
+                tile.getY() + 50 >= 0) {
 
 
             if (this.uiThreadedWrapper.getStatus()) {
@@ -43,10 +36,10 @@ public class TesThread implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                uiThreadedWrapper.setTile(this.tile);
-                this.tile.setX(tile.getX() + this.newX);
-                this.tile.setY(tile.getY() + this.newY);
-                this.newY++;
+                uiThreadedWrapper.setTile(tile);
+                tile.setX(tile.getX() + newX);
+                tile.setY(tile.getY() + newY);
+                newY++;
 
             } else {
                 break;
