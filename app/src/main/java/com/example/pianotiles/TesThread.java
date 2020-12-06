@@ -26,10 +26,10 @@ public class TesThread implements Runnable {
 
     @Override
     public void run() {
-        this.newX = 1;
-        this.newY = -11;
+        this.newX = 0;
+        this.newY = 0;
         int x = this.maxWidth / 2;
-        int y = this.maxHeight / 2;
+        int y = 0;
         this.tile = new Tile(x, y);
         while (this.tile.getX() - 50 <= this.maxWidth &&
                 this.tile.getY() - 50 <= this.maxHeight &&
@@ -39,7 +39,7 @@ public class TesThread implements Runnable {
 
             if (this.uiThreadedWrapper.getStatus()) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.maxWidth = this.ivCanvas.getWidth();
         this.maxHeight = this.ivCanvas.getHeight();
         this.x = this.maxWidth / 2;
-        this.y = this.maxHeight / 2;
-        int left = this.x - 50;
-        int top = this.y - 50;
-        int right = this.x + 50;
-        int bottom = this.y + 50;
+        this.y = 0;
+        int left = this.x - 100;
+        int top = this.y;
+        int right = this.x + 100;
+        int bottom = this.y + 400;
         this.mBitmap = Bitmap.createBitmap(this.maxWidth, this.maxHeight, Bitmap.Config.ARGB_8888);
         this.ivCanvas.setImageBitmap(this.mBitmap);
         this.mCanvas = new Canvas(this.mBitmap);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Paint paint = new Paint();
         int mColorTest = ResourcesCompat.getColor(getResources(), R.color.teal_200, null);
         paint.setColor(mColorTest);
-        Rect rect = new Rect(tile.getX() - 50, tile.getY() - 50, tile.getX() + 50, tile.getY() + 50);
+        Rect rect = new Rect(tile.getX() - 100, tile.getY(), tile.getX() + 100, tile.getY() + 400);
         this.mCanvas.drawRect(rect, paint);
         this.ivCanvas.invalidate();
     }
