@@ -26,8 +26,8 @@ public class TesThread implements Runnable {
 
     @Override
     public void run() {
-        this.newX = this.random.nextInt(20) - 10;
-        this.newY = this.random.nextInt(20) - 10;
+        this.newX = 1;
+        this.newY = -11;
         int x = this.maxWidth / 2;
         int y = this.maxHeight / 2;
         this.tile = new Tile(x, y);
@@ -35,6 +35,8 @@ public class TesThread implements Runnable {
                 this.tile.getY() - 50 <= this.maxHeight &&
                 this.tile.getX() + 50 >= 0 &&
                 this.tile.getY() + 50 >= 0) {
+
+
             if (this.uiThreadedWrapper.getStatus()) {
                 try {
                     Thread.sleep(100);
@@ -44,6 +46,8 @@ public class TesThread implements Runnable {
                 uiThreadedWrapper.setTile(this.tile);
                 this.tile.setX(tile.getX() + this.newX);
                 this.tile.setY(tile.getY() + this.newY);
+                this.newY++;
+
             } else {
                 break;
             }
