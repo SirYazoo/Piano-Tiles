@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.uiThreadedWrapper.setStatus(true);
             this.initCanvas();
             this.run();
+        } else if (v == this.stopBtn) {
+            this.uiThreadedWrapper.setStatus(false);
         }
     }
 }
